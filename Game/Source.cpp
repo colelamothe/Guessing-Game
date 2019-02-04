@@ -23,7 +23,12 @@ int main() {
 			while (guess != randomNumber) { //runs the loop until the player guesses correctly
 
 				cin >> guess; // receives guess
-
+				while (cin.fail()) {			//Tests if the input is a number or not by seeing if the assignment to the variable failed. failure returns a true value.
+					cout << "Non-integer entered, please try again: " << endl;
+					cin.clear(); //clears any characters not processed yet
+					cin.ignore(); //resets the error flag caused by trying to send a character to an integer variable
+					cin >> guess; //takes new guess
+				}
 				if (guess < randomNumber) {
 				cout << "Too low, try again: " << endl; // basic hint and receives new guess input 
 				}
